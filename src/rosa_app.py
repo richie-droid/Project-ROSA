@@ -32,8 +32,10 @@ SCOPE = [
 # Load secrets – Streamlit Cloud + local (no local file fallback on Cloud)
 # -------------------------------------------------
 
+import json
+
 GEOCODIO_KEY = st.secrets["GEOCODIO_KEY"]
-creds_dict = yaml.safe_load(st.secrets["GSPREAD_CREDS"])
+creds_dict = json.loads(st.secrets["GSPREAD_JSON"])
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, SCOPE)
 
 # -------------------------------------------------
