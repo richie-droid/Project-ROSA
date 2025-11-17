@@ -29,15 +29,12 @@ SCOPE = [
 ]
 
 # -------------------------------------------------
-# SECRETS LOADING – works locally + Streamlit Cloud
+# Load secrets – Streamlit Cloud + local (no local file fallback on Cloud)
 # -------------------------------------------------
-try:
-    GEOCODIO_KEY = st.secrets["GEOCODIO_KEY"]
-    creds_dict = yaml.safe_load(st.secrets["gspread"]["creds"])
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, SCOPE)
-except:
-    GEOCODIO_KEY = "001c70ca6864c9094010d9cc4da16ccc9dc00a0"
-    creds = ServiceAccountCredentials.from_json_keyfile_name(CREDS_FILE, SCOPE)
+
+GEOCODIO_KEY = st.secrets["GEOCODIO_KEY"]
+creds_dict = yaml.safe_load(st.secrets["gspread"]["creds"])
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, SCOPE)
 
 # -------------------------------------------------
 # GOOGLE SHEETS CONNECTION
