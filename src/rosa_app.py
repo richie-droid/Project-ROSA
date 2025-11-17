@@ -33,7 +33,7 @@ SCOPE = [
 # -------------------------------------------------
 
 GEOCODIO_KEY = st.secrets["GEOCODIO_KEY"]
-creds_dict = yaml.safe_load(st.secrets["gspread"]["creds"])
+creds_dict = yaml.safe_load(st.secrets["GSPREAD_CREDS"])
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, SCOPE)
 
 # -------------------------------------------------
